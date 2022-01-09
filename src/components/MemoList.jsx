@@ -34,8 +34,6 @@ export default function MemoList() {
         </View>
       </View>
     </View>
-
-
   );
 }
 
