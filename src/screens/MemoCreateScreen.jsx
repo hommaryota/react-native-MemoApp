@@ -18,10 +18,10 @@ export default function MemoCreateScreen(props) {
     const ref = db.collection(`users/${currentUser.uid}/memos`);
     ref.add({
       bodyText,
-      updateAt: new Date(),
+      updatedAt: new Date(),
     })
       .then((docRef) => {
-        console.log('created', docRef.id);
+        console.log('Created', docRef.id);
         navigation.goBack();
       })
       .catch((error) => {
