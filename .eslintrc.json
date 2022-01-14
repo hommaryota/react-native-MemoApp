@@ -21,6 +21,7 @@
         "no-use-before-define":0,
         "react/prop-types": ["error",{"ignore":["navigation"]}],
         "react/no-unstable-nested-components": ["error",{"allowAsProps": true}],
-        "allowArrowFunctions": false
+        "allowArrowFunctions": false,
+        "import/prefer-default-export": 0
     }
 }
