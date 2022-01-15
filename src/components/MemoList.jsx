@@ -6,19 +6,43 @@ import { useNavigation } from '@react-navigation/native';
 import {
   shape, string, instanceOf, arrayOf,
 } from 'prop-types';
+import firebase from 'firebase';
 
 import { Feather } from '@expo/vector-icons';
-import {dateToString}from '../utils'
+import { dateToString } from '../utils';
 
 export default function MemoList(props) {
   const { memos } = props;
   const navigation = useNavigation();
 
+  function deleteMemo(id) {
+    const { currentUser } = firebase.auth();
+    if (currentUser) {
+      const db = firebase.firestore();
+      const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+      Alert.alert('メモを削除します', 'よろしいですか？', [
+        {
+          text: 'キャンセル',
+          onPress: () => { },
+        },
+        {
+          text: '削除する',
+          style: 'destructive',
+          onPress: () => {
+            ref.delete().catch(() => {
+              Alert.alert('削除に失敗しました');
+            });
+          },
+        },
+      ]);
+    }
+  }
+
   function renderItem({ item }) {
     return (
       <TouchableOpacity
         style={styles.memoListItem}
-        onPress={() => { navigation.navigate('MemoDetail',{id: item.id}); }}
+        onPress={() => { navigation.navigate('MemoDetail', { id: item.id }); }}
       >
         <View>
           <Text style={styles.memoListItemTitle} numberOfLines={1}>{item.bodyText}</Text>
@@ -27,7 +51,7 @@ export default function MemoList(props) {
         <TouchableOpacity
           style={styles.memoDelete}
           onPress={() => {
-            Alert.alert('Aer you sure?');
+            deleteMemo(item.id);
           }}
         >
           <Feather name="x" size={16} color="#B0B0B0" />
