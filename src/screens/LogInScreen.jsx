@@ -1,4 +1,4 @@
-import React, { useState, userEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, TextInput, TouchableOpacity, Alert,
 } from 'react-native';
@@ -26,14 +26,12 @@ export default function LogInScreen(props) {
       }
     });
     return unsubscribe;
-  }),[];
+  }), [];
 
   function handlePress() {
     setLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
-        console.log(user.uid);
+      .then(() => {
         navigation.reset({
           index: 0,
           routes: [{ name: 'MemoList' }],
