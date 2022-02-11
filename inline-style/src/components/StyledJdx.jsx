@@ -5,6 +5,8 @@ export const StyledJsx = () => {
         <p className="title">- Styled JSX -</p>
         <button className="button">FIGHT!!</button>
       </div>
+
+      {/* test */}
       <style jsx="true">{`
         .container {
           border: solid 2px #392eff;
@@ -15,12 +17,10 @@ export const StyledJsx = () => {
           justify-content: space-around;
           align-items: center;
         }
-
         .title {
           margin: 0;
           color: #3d84a8;
         }
-
         .button {
           background-color: #abedd8;
           border: none;
