@@ -15,10 +15,12 @@ export const StyledJsx = () => {
           justify-content: space-around;
           align-items: center;
         }
+
         .title {
           margin: 0;
           color: #3d84a8;
         }
+
         .button {
           background-color: #abedd8;
           border: none;
