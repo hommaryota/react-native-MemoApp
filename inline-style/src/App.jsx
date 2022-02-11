@@ -1,10 +1,12 @@
-import {InlineStyle} from "./InlineStyle";
+import {InlineStyle} from "./components/InlineStyle";
 import "./App.css";
+import {CssModules} from "./components/CssModules";
 
 export default function App() {
   return (
-    <div>
+    <div className="App">
       <InlineStyle />
+      <CssModules />
     </div>
   );
 }
